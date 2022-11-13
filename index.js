@@ -73,7 +73,7 @@ function getBudgetCals()
 //Functions copied from the CRUD video
 function onFormSubmit()
 {
-    
+    //not sure what this is
     event.preventDefault();
     let formData = readFormData();
     if (selectedRow === null)
