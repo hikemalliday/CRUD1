@@ -1,34 +1,5 @@
 
-
-//NEED TO GET TOTALS WORKING// :)
-
-
-//Vars
-let selectedRow = null;
-let dailyTotal = 0;
-let calsRemaining;
-let grams = parseInt(document.getElementById('calories').value);
-let remaining = document.getElementById("calsRemaining")
-let formData = {};
-
-
-
-//Daily Total / Cals Remaining displays
-function totalCals()
-{
-    dailyTotal = parseInt(dailyTotal) + parseInt(formData['calories'])
-    //dailyTotal = parseInt(dailyTotal) + parseInt(document.getElementById('calories').value)
-    document.getElementById('dailyTotal').innerHTML = `Daily Total: ${dailyTotal}`
-    document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
-}
-
-function getBudgetCals()
-{
-    calsRemaining = remaining.value;
-    document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
    
-}
-
 //Classes
 class Food 
 {
@@ -81,12 +52,22 @@ class DailyTotals
     
 }
 
-//Food types
-const Broccoli = new Food(.35, .028, .066, .0037);
-const Carrot = new Food(.41, .01, 0.0958, 0.0024);
-const Pbfit = new Food(5.38461, .5, .3125, 0.125);
-const ChickenBreast = new Food(1.51, .3, 0, 0.0317);
-const Spinach = new Food(.3, .19, .005, .006, .026);
+
+//Daily Total / Cals Remaining displays
+function totalCals()
+{
+    dailyTotal = parseInt(dailyTotal) + parseInt(formData['calories'])
+    //dailyTotal = parseInt(dailyTotal) + parseInt(document.getElementById('calories').value)
+    document.getElementById('dailyTotal').innerHTML = `Daily Total: ${dailyTotal}`
+    document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
+}
+
+function getBudgetCals()
+{
+    calsRemaining = remaining.value;
+    document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
+   
+}
 
 //Functions copied from the CRUD video
 function onFormSubmit()
@@ -110,6 +91,7 @@ function onFormSubmit()
 //Retrieve the Data (I added 'let array' to have something to dump the 'getMacrosPerGrams' output into)
 function readFormData()
 {
+    
     let formData = {};
     let foodInput = getFoodInput(document.getElementById('food').value)
     
@@ -126,6 +108,8 @@ function readFormData()
     formData['carb'] = carb;
     formData['fat'] = fat;
     
+   
+
     return formData;
 
     //Convert Food dropdown input into Object
@@ -210,3 +194,42 @@ function resetForm()
     document.getElementById('grams').value = '';
     document.getElementById('calories').value = '';
 }
+
+//Food types
+const Broccoli = new Food(.35, .028, .066, .0037, 'Broccoli');
+const Carrot = new Food(.41, .01, 0.0958, 0.0024, 'Carrot');
+const Pbfit = new Food(5.38461, .5, .3125, 0.125, 'Pbfit');
+const ChickenBreast = new Food(1.51, .3, 0, 0.0317, 'ChickenBreast');
+const Spinach = new Food(.19, .005, .006, .026, 'Spinach');
+
+//Vars
+let selectedRow = null;
+let dailyTotal = 0;
+let calsRemaining;
+let grams = parseInt(document.getElementById('calories').value);
+let remaining = document.getElementById("calsRemaining")
+let formData = {};
+
+///Testing iterators for pulldown menu
+
+let foodTypes =
+[
+    Broccoli, Carrot, Pbfit, ChickenBreast, Spinach
+]
+
+function populateDropdownList(input)
+{
+    let options = document.getElementById("food");
+    for (let i = 0; i < input.length; i++)
+    {
+        let foods = input[i].name;
+        let element = document.createElement("option");
+        element.textContent = foods;
+        element.value = foods;
+        options.appendChild(element)
+    }
+}
+
+populateDropdownList(foodTypes)
+
+
