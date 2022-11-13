@@ -54,9 +54,10 @@ class DailyTotals
 
 
 //Daily Total / Cals Remaining displays
-function totalCals()
+function totalCals(formData)
 {
-    dailyTotal = parseInt(dailyTotal) + parseInt(formData['calories'])
+    console.log(dailyTotal)
+    dailyTotal = dailyTotal + parseInt(formData['calories'])
     //dailyTotal = parseInt(dailyTotal) + parseInt(document.getElementById('calories').value)
     document.getElementById('dailyTotal').innerHTML = `Daily Total: ${dailyTotal}`
     document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
@@ -83,7 +84,7 @@ function onFormSubmit()
     {
         updateRecord(formData);
     }
-    totalCals();
+    totalCals(formData);
     resetForm();
 
 }
@@ -111,9 +112,12 @@ function readFormData()
    
 
     return formData;
-
+    //Take this OUT
     //Convert Food dropdown input into Object
-    function getFoodInput(input)
+    
+}
+
+function getFoodInput(input)
     {
         switch(input)
         {
@@ -135,7 +139,6 @@ function readFormData()
         }
         return input;
     }   
-}
 
 //Insert the data
 function insertNewRecord(data)
@@ -219,14 +222,14 @@ let foodTypes =
 
 function populateDropdownList(input)
 {
-    let options = document.getElementById("food");
+    let select = document.getElementById("food");
     for (let i = 0; i < input.length; i++)
     {
         let foods = input[i].name;
-        let element = document.createElement("option");
-        element.textContent = foods;
-        element.value = foods;
-        options.appendChild(element)
+        let option = document.createElement("option");
+        option.textContent = foods;
+        option.value = foods;
+        select.appendChild(option)
     }
 }
 
