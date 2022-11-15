@@ -55,22 +55,27 @@ class DailyTotals
 }
 
 
+// //Put here globally for testing the ' totals() ' function
+//     let totalCals = 0;
+//     let totalProtein = 0;
+//     let totalCarbs = 0;
+//     let totalFats = 0;
+
 //Daily Total / Cals Remaining displays
 function totals(formData)
 {
-    
-    totalCals = totalCals + formData['calories'];
-    totalProtein = totalProtein + formData['protein'];
-    totalCarbs = totalCarbs + formData['carb'];
-    totalFats = totalFats + formData['fat'];
-    
-    document.getElementById('totalcals').innerHTML = `Calories: ${totalCals}`;
+    console.log(formData.calories)
+    /*totalCals = totalCals + formData.calories;
+    totalProtein = totalProtein + formData.protein;
+    totalCarbs = totalCarbs + formData.carb;
+    totalFats = totalFats + formData.fat;*/
+     
+    document.getElementById('totalcals').innerHTML = `Calories: ${formData.calories}`;
     document.getElementById('totalprotein').innerHTML = `Calories: ${totalProtein}`;
     document.getElementById('totalcarbs').innerHTML = `Calories: ${totalCarbs}`;
     document.getElementById('totalfats').innerHTML = `Calories: ${totalFals}`;
     
-    //document.getElementById('dailyTotal').innerHTML = `Daily Total: ${dailyTotal}`
-    //document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
+   
 }
 
 function getBudgetCals()
@@ -108,8 +113,8 @@ function readFormData()
     let foodInput = getFoodInput(document.getElementById('food').value)
 
 
-        //Do I need a return in this conditional?
-        if(foodInput = Custom)
+       
+        if(foodInput === Custom)
         {
             let formData = {};
             formData['food'] = document.getElementById('food').value;
@@ -124,7 +129,7 @@ function readFormData()
         else
         {
 
-    let calorieInput = document.getElementById("calories").value;
+    
     let cals;
     let protein;
     let carb;
