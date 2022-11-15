@@ -10,8 +10,16 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <h1 id="dailyTotal">Daily Total:</h1>
-    <h2 id="calsRemaining">Cals Remaining:</h2>
+    <h1 id="dailyTotal">Daily Totals:</h1>
+   
+    <div class="totals">
+        <tr>
+            <th id="totalcals">Calories:  </th>
+            <th id="totalprotein">Protein:  </th>
+            <th id="totalcarbs">Carbs:  </th>
+            <th id="totalfat">Fat:  </th>
+        </tr>  
+    </div>
     <table>
         <tr>
             <td>
@@ -29,6 +37,18 @@
                     <div>
                         <label for="calories">Calories</label>
                         <input type="number" name="calories" id="calories">
+                    </div>
+                    <div>
+                        <label for="protein">Protein</label>
+                        <input type="number" name="protein" id="protein">
+                    </div>
+                    <div>
+                        <label for="carbs">Carbs</label>
+                        <input type="number" name="carbs" id="carbs">
+                    </div>
+                    <div>
+                        <label for="fats">Fats</label>
+                        <input type="number" name="fats" id="fats">
                     </div>
                     <div>
                         <div class="form_action--button">
@@ -57,6 +77,7 @@
             </td>
         </tr>
     </table>
+    
     <script src="index.js"></script>
 </body>
 </html>

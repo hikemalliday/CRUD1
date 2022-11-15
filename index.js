@@ -1,4 +1,6 @@
 
+
+//<h2 id="calsRemaining">Cals Remaining:</h2>
    
 //Classes
 class Food 
@@ -54,13 +56,21 @@ class DailyTotals
 
 
 //Daily Total / Cals Remaining displays
-function totalCals(formData)
+function totals(formData)
 {
-    console.log(dailyTotal)
-    dailyTotal = dailyTotal + parseInt(formData['calories'])
-    //dailyTotal = parseInt(dailyTotal) + parseInt(document.getElementById('calories').value)
-    document.getElementById('dailyTotal').innerHTML = `Daily Total: ${dailyTotal}`
-    document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
+    
+    totalCals = totalCals + formData['calories'];
+    totalProtein = totalProtein + formData['protein'];
+    totalCarbs = totalCarbs + formData['carb'];
+    totalFats = totalFats + formData['fat'];
+    
+    document.getElementById('totalcals').innerHTML = `Calories: ${totalCals}`;
+    document.getElementById('totalprotein').innerHTML = `Calories: ${totalProtein}`;
+    document.getElementById('totalcarbs').innerHTML = `Calories: ${totalCarbs}`;
+    document.getElementById('totalfats').innerHTML = `Calories: ${totalFals}`;
+    
+    //document.getElementById('dailyTotal').innerHTML = `Daily Total: ${dailyTotal}`
+    //document.getElementById('calsRemaining').innerHTML = `Remaining: ${calsRemaining - dailyTotal}`
 }
 
 function getBudgetCals()
@@ -73,6 +83,7 @@ function getBudgetCals()
 //Functions copied from the CRUD video
 function onFormSubmit()
 {
+    
     //not sure what this is
     event.preventDefault();
     let formData = readFormData();
@@ -84,7 +95,7 @@ function onFormSubmit()
     {
         updateRecord(formData);
     }
-    totalCals(formData);
+    totals(formData);
     resetForm();
 
 }
@@ -95,7 +106,25 @@ function readFormData()
     
     let formData = {};
     let foodInput = getFoodInput(document.getElementById('food').value)
-    
+
+
+        //Do I need a return in this conditional?
+        if(foodInput = Custom)
+        {
+            let formData = {};
+            formData['food'] = document.getElementById('food').value;
+            formData['grams'] = document.getElementById('grams').value;
+            formData['calories'] = document.getElementById('calories').value;
+            formData['protein'] = document.getElementById('protein').value;
+            formData['carb'] = document.getElementById('carbs').value;
+            formData['fat'] = document.getElementById('fats').value;
+
+            return formData;
+        }
+        else
+        {
+
+    let calorieInput = document.getElementById("calories").value;
     let cals;
     let protein;
     let carb;
@@ -112,15 +141,20 @@ function readFormData()
    
 
     return formData;
-    //Take this OUT
-    //Convert Food dropdown input into Object
+        }
+    
     
 }
+
+//Convert Food dropdown input into Object
 
 function getFoodInput(input)
     {
         switch(input)
         {
+            case "Custom":
+                input = Custom
+                break;
             case 'Broccoli':
                 input = Broccoli
                 break;
@@ -162,6 +196,8 @@ function insertNewRecord(data)
         
 }
 
+
+
 //Edit the data
 function onEdit(td)
 {
@@ -184,7 +220,7 @@ function onDelete(td)
 {
     if(confirm('Do you want to delete?'))
     {
-        row = td.parentElement.parentElement;
+        let row = td.parentElement.parentElement;
         document.getElementById('storeList').deleteRow(row.rowIndex);
     }
     resetForm();
@@ -199,6 +235,7 @@ function resetForm()
 }
 
 //Food types
+const Custom = new Food(.35, .028, .066, .0037, 'Custom');
 const Broccoli = new Food(.35, .028, .066, .0037, 'Broccoli');
 const Carrot = new Food(.41, .01, 0.0958, 0.0024, 'Carrot');
 const Pbfit = new Food(5.38461, .5, .3125, 0.125, 'Pbfit');
@@ -217,7 +254,7 @@ let formData = {};
 
 let foodTypes =
 [
-    Broccoli, Carrot, Pbfit, ChickenBreast, Spinach
+    Custom, Broccoli, Carrot, Pbfit, ChickenBreast, Spinach
 ]
 
 function populateDropdownList(input)

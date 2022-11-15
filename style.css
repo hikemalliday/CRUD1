@@ -26,7 +26,7 @@ h2
 
 table
 {
-    width: 80%;
+    width: 100%;
     margin: 40px auto;
     background: rgba(0, 0, 0, 0.5);
 
@@ -36,6 +36,7 @@ table
 form
 {
     text-transform: uppercase;
+    width: 25%;
 }
 
 table.list
@@ -58,7 +59,7 @@ tr:nth-child(even), table.list thread> tr
 
 input[type="text"], input[type="number"]
 {
-    width: 91%;
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -107,4 +108,9 @@ button
 button:hover
 {
     background: #4b99d8;
+}
+
+.totals
+{
+    text-align: center;
 }
